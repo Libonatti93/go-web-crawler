@@ -1,0 +1,33 @@
+Golang Web Crawler with Colly
+Install Dependencies:
+
+First, install the colly package:
+go get -u github.com/gocolly/colly
+
+
+Code Explanation
+Collector Creation (colly.NewCollector): Starts a new collector with a User-Agent configured to look like a Google bot, which helps avoid some simple User-Agent blocking.
+
+Link Handler (OnHTML): Sets a callback for all <a> elements with an href attribute, extracting and displaying the link.
+
+Request Callback (OnRequest): Displays the URL being visited.
+
+Error Callback (OnError): Displays errors that occur during requests.
+
+Start Collection (c.Visit): Starts collection at the provided URL (https://example.com), which you can replace with the URL of your interest.
+
+Running the Crawler
+Save the code to a file, for example, web_crawler.go.
+
+Compile and run the code:
+go build -o web_crawler web_crawler.go
+./web_crawler
+
+Customizations and Expansions
+Extract Other Information: You can add additional callbacks to collect other types of data, such as images (<img>), titles (<h1>, <h2>, etc.), or any other HTML content.
+
+Handle Internal Pages: To expand the crawler to internal pages, you can adjust the collector to follow internal links automatically using c.OnHTML with additional logic to filter URLs.
+
+Limits and Restrictions: Colly allows you to set limits such as the maximum number of requests per second, to avoid overloading servers.
+
+Store Data: You can save the collected data to a file, database, or any other storage destination as needed.
